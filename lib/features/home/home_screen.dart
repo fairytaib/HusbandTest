@@ -55,57 +55,6 @@ class Header extends StatelessWidget {
   }
 }
 
-class CardSceleton extends StatelessWidget {
-  final List<Widget> cards;
-
-  const CardSceleton({
-    super.key,
-    required this.cards,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Übersicht',
-          style: TextStyle(
-            fontFamily: 'Cormorant Garamond',
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            color: MainColors.lightInk,
-          ),
-        ),
-        SizedBox(
-          height: 250,
-          width: double.infinity,
-          child: Stack(
-            children: [
-              if(cards.length > 2)
-                Positioned(
-                  top: 20,
-                  left: 10,
-                  right: 10,
-                  child: cards[2],
-                ),
-              if(cards.length > 1)
-                Positioned(
-                  top: 10,
-                  left: 5,
-                  right: 5,
-                  child: cards[1],
-                ),
-              cards[0]
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class Card extends StatelessWidget {
   final Widget child;
   final Color backgroundColor;
@@ -177,22 +126,27 @@ class CardContent extends StatelessWidget {
             ),
           ),
           SizedBox(height: 8),
-          Text(
-            value.split(" ")[0],
-            style: TextStyle(
-              fontFamily: 'Cormorant Garamond',
-              fontSize: 18,
-              color: valueColor
-              )
-            ),
-            Text(
-            value.contains('/') ? '/ ${value.split('/')[1]}' : '',
-            style: TextStyle(
-              fontFamily: 'Cormorant Garamond',
-              fontSize: 12,
-              color: valueColor
-              )
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                value.split(" ")[0],
+                style: TextStyle(
+                  fontFamily: 'Cormorant Garamond',
+                  fontSize: 18,
+                color: valueColor 
+                )
+              ),
+              Text(
+              value.contains('/') ? '/ ${value.split('/')[1]}' : '',
+              style: TextStyle(
+                fontFamily: 'Cormorant Garamond',
+                fontSize: 12,
+                color: valueColor
+                )
+              ),
+            ]
+          ),
           Spacer(),
           Text(comment, style: TextStyle(fontFamily: 'Cormorant Garamond', fontSize: 12, color: commentColor)),
           Spacer(),
@@ -241,9 +195,108 @@ class InteractiveCardStack extends StatefulWidget {
 }
 
 class _InteractiveCardStackState extends State<InteractiveCardStack> {
+  int _currentIndex = 0;
+
+  void _showNextCard() {
+    setState(() {
+      _currentIndex = (_currentIndex + 1) % widget.cards.length;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    int topIndex = _currentIndex;
+    int back1Index = (_currentIndex + 1) % widget.cards.length;
+    int back2Index = (_currentIndex + 2) % widget.cards.length;
+    int indexDisplay = _currentIndex + 1;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Übersicht',
+          style: TextStyle(
+            fontFamily: 'Cormorant Garamond',
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+            color: MainColors.lightInk,
+          ),
+        ),
+        GestureDetector(
+          onTap: _showNextCard,
+          child: SizedBox(
+            height: 250,
+            width: double.infinity,
+            child: Stack(
+              children: [
+                AnimatedPositioned(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.easeOutBack,
+                  top: 20,
+                  left: 10,
+                  right: 10,
+                  child: Opacity(opacity: 0.4, child: widget.cards[back2Index]),
+                ),
+                AnimatedPositioned(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.easeOutBack,
+                  top: 10,
+                  left: 5,
+                  right: 5,
+                  child: Opacity(opacity: 0.7, child: widget.cards[back1Index]),
+                ),
+                AnimatedPositioned(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.easeOutBack,
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: Opacity(
+                    opacity: 1.0,
+                    child: widget.cards[topIndex],
+                  ),
+                ),
+              ],
+            ),
+          ),  
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              indexDisplay.toString(),
+              style: TextStyle(
+                fontFamily: 'DM Sans',
+                fontSize: 12,
+                color: MainColors.lightInk
+              ),
+            ),
+            Text(
+                ' / ${widget.cards.length}',
+                style: TextStyle(
+                  fontFamily: 'DM Sans',
+                  fontSize: 12,
+                  color: MainColors.lightInk
+                ),
+              ),
+          ],
+          )
+      ],
+    );
+  }
+}
+
+class QuickActions extends StatelessWidget {
+  const QuickActions({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        
+      ],
+    );
   }
 }
 
@@ -262,7 +315,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               const Header(), 
               SizedBox(height: 32),
-              CardSceleton(
+              InteractiveCardStack(
                 cards: [
                   Card(
                     backgroundColor: MainColors.emerald,
