@@ -55,29 +55,6 @@ class Header extends StatelessWidget {
   }
 }
 
-class Card extends StatelessWidget {
-  final Widget child;
-  final Color backgroundColor;
-  const Card({
-    super.key,
-    required this.child,
-    required this.backgroundColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 200,
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: child,
-    );
-  }
-}
-
 class TagData {
   final String label;
   final IconData? icon; // Optionales Icon
@@ -134,21 +111,28 @@ class CardContent extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: 'Cormorant Garamond',
                   fontSize: 18,
-                color: valueColor 
-                )
+                  color: valueColor,
+                ),
               ),
               Text(
-              value.contains('/') ? '/ ${value.split('/')[1]}' : '',
-              style: TextStyle(
-                fontFamily: 'Cormorant Garamond',
-                fontSize: 12,
-                color: valueColor
-                )
+                value.contains('/') ? '/ ${value.split('/')[1]}' : '',
+                style: TextStyle(
+                  fontFamily: 'Cormorant Garamond',
+                  fontSize: 12,
+                  color: valueColor,
+                ),
               ),
-            ]
+            ],
           ),
           Spacer(),
-          Text(comment, style: TextStyle(fontFamily: 'Cormorant Garamond', fontSize: 12, color: commentColor)),
+          Text(
+            comment,
+            style: TextStyle(
+              fontFamily: 'Cormorant Garamond',
+              fontSize: 12,
+              color: commentColor,
+            ),
+          ),
           Spacer(),
           Wrap(
             spacing: 8,
@@ -168,7 +152,7 @@ class CardContent extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'DM Sans',
                         fontSize: 12,
-                        color: Colors.white
+                        color: Colors.white,
                       ),
                     ),
                     if (tag.icon != null) ...[
@@ -182,6 +166,25 @@ class CardContent extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class Card extends StatelessWidget {
+  final Widget child;
+  final Color backgroundColor;
+  const Card({super.key, required this.child, required this.backgroundColor});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 200,
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: child,
     );
   }
 }
@@ -251,14 +254,11 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
                   top: 0,
                   left: 0,
                   right: 0,
-                  child: Opacity(
-                    opacity: 1.0,
-                    child: widget.cards[topIndex],
-                  ),
+                  child: Opacity(opacity: 1.0, child: widget.cards[topIndex]),
                 ),
               ],
             ),
-          ),  
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -268,35 +268,70 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
               style: TextStyle(
                 fontFamily: 'DM Sans',
                 fontSize: 12,
-                color: MainColors.lightInk
+                color: MainColors.lightInk,
               ),
             ),
             Text(
-                ' / ${widget.cards.length}',
-                style: TextStyle(
-                  fontFamily: 'DM Sans',
-                  fontSize: 12,
-                  color: MainColors.lightInk
-                ),
+              ' / ${widget.cards.length}',
+              style: TextStyle(
+                fontFamily: 'DM Sans',
+                fontSize: 12,
+                color: MainColors.lightInk,
               ),
+            ),
           ],
-          )
+        ),
       ],
     );
   }
 }
 
-class QuickActions extends StatelessWidget {
-  const QuickActions({super.key});
+class QuickAction extends StatelessWidget {
+  final Color backgroundColor;
+  final IconData icon;
+  final String text;
+
+  const QuickAction({
+    super.key,
+    required this.backgroundColor,
+    required this.icon,
+    required this.text,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        
+        Container(
+          width: 33,
+          height: 33,
+          decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Icon(
+            icon,
+            size: 32,
+            color: const Color.fromARGB(185, 255, 255, 255),
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(text),
       ],
     );
+  }
+}
+
+class QuickActionsSection extends StatelessWidget {
+  final List<Widget> children;
+
+  const QuickActionsSection({super.key, required this.children});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: children);
   }
 }
 
@@ -313,7 +348,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Header(), 
+              const Header(),
               SizedBox(height: 32),
               InteractiveCardStack(
                 cards: [
@@ -334,7 +369,6 @@ class HomeScreen extends StatelessWidget {
                         TagData(label: 'Maghrib', icon: Icons.check),
                       ],
                     ),
-                    
                   ),
                   Card(
                     backgroundColor: MainColors.brown,
@@ -351,7 +385,6 @@ class HomeScreen extends StatelessWidget {
                         TagData(label: 'Gestern: €450 Ausgaben'),
                       ],
                     ),
-                    
                   ),
                   Card(
                     backgroundColor: MainColors.purple,
@@ -368,9 +401,34 @@ class HomeScreen extends StatelessWidget {
                         TagData(label: 'Picknick im Park'),
                       ],
                     ),
-                    
                   ),
-              )],
+                ],
+              ),
+              QuickActionsSection(
+                children: [
+                  QuickAction(
+                    backgroundColor: const Color.fromARGB(255, 38, 199, 124),
+                    icon: Icons.menu_book,
+                    text: 'Dua hinzufügen',
+                  ),
+                  QuickAction(
+                    backgroundColor: const Color(0xFFE79231),
+                    icon: Icons.add,
+                    text: 'Ausgaben hinzufügen',
+                  ),
+                  QuickAction(
+                    backgroundColor: const Color.fromARGB(255, 164, 49, 231),
+                    icon: Icons.local_restaurant_rounded,
+                    text: 'Date planen',
+                  ),
+                  QuickAction(
+                    backgroundColor: const Color(0xFFE79231),
+                    icon: Icons.pie_chart_rounded,
+                    text: 'Zakat rechnen',
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
