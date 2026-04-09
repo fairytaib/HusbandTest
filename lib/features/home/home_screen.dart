@@ -286,39 +286,56 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
   }
 }
 
-class QuickAction extends StatelessWidget {
+class QuickAction extends StatefulWidget {
   final Color backgroundColor;
   final IconData icon;
   final String text;
 
   const QuickAction({
-    super.key,
     required this.backgroundColor,
     required this.icon,
     required this.text,
+    super.key,
   });
 
+  @override
+  State<QuickAction> createState() => _QuickActionState();
+}
+
+class _QuickActionState extends State<QuickAction> {
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
-          width: 33,
-          height: 33,
-          decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Icon(
-            icon,
-            size: 32,
-            color: const Color.fromARGB(185, 255, 255, 255),
+        GestureDetector(
+          onTap: () {
+            // Handle tap event
+          },
+          child: Container(
+            width: 33,
+            height: 33,
+            decoration: BoxDecoration(
+              color: widget.backgroundColor,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Icon(
+              widget.icon,
+              size: 32,
+              color: const Color.fromARGB(185, 255, 255, 255),
+            ),
           ),
         ),
         const SizedBox(height: 4),
-        Text(text),
+        Text(
+          widget.text,
+          style: TextStyle(
+            fontFamily: 'DM Sans',
+            fontSize: 12,
+            color: MainColors.lightInk,
+          ),
+        ),
       ],
     );
   }
