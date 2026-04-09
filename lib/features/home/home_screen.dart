@@ -372,6 +372,188 @@ class QuickActionsSection extends StatelessWidget {
   }
 }
 
+class InformationCenter extends StatefulWidget {
+  final Color backgroundColor;
+  final IconData icon;
+  final String title;
+  final String value;
+  final String comment;
+
+  const InformationCenter({
+    super.key,
+    required this.backgroundColor,
+    required this.icon,
+    required this.title,
+    required this.value,
+    required this.comment,
+  });
+
+  @override
+  State<InformationCenter> createState() => _InformationCenterState();
+}
+
+class _InformationCenterState extends State<InformationCenter> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(20.0),
+      child: GestureDetector(
+        onTap: () {
+          // Handle tap event
+        },
+        child: Container(
+          width: double.infinity,
+          height: 80,
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: widget.backgroundColor,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: widget.backgroundColor.withValues(alpha: 0.25),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                widget.icon,
+                size: 32,
+                color: const Color.fromARGB(185, 255, 255, 255),
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.title.toUpperCase(),
+                      style: TextStyle(
+                        fontFamily: 'DM Sans',
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      widget.value,
+                      style: TextStyle(
+                        fontFamily: 'Cormorant Garamond',
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      widget.comment,
+                      style: TextStyle(
+                        fontFamily: 'Cormorant Garamond',
+                        fontSize: 12,
+                        color: Colors.white70,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward,
+                size: 24,
+                color: const Color.fromARGB(185, 255, 255, 255),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class LastMemories extends StatefulWidget {
+  final IconData icon;
+  final String title;
+  final String date;
+  final String tag;
+  final String paidMoney;
+
+  const LastMemories({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.date,
+    required this.tag,
+    required this.paidMoney,
+  });
+
+  @override
+  State<LastMemories> createState() => _LastMemoriesState();
+}
+
+class _LastMemoriesState extends State<LastMemories> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 50,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(86, 255, 255, 255).withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            widget.icon,
+            size: 20,
+            color: const Color.fromARGB(185, 255, 255, 255),
+          ),
+          SizedBox(width: 12),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.title,
+                style: TextStyle(
+                  fontFamily: 'DM Sans',
+                  fontSize: 12,
+                  color: Colors.white,
+                ),
+              ),
+              Row(
+                children: [
+                  Text(
+                    widget.date,
+                    style: TextStyle(
+                      fontFamily: 'Cormorant Garamond',
+                      fontSize: 10,
+                      color: Colors.white70,
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    widget.tag,
+                    style: TextStyle(
+                      fontFamily: 'DM Sans',
+                      fontSize: 10,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+                // Hier muss noch der Preis/Value eingetragen werden
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -464,6 +646,13 @@ class HomeScreen extends StatelessWidget {
                     text: 'Zakat rechnen',
                   ),
                 ],
+              ),
+              InformationCenter(
+                backgroundColor: MainColors.ink,
+                icon: Icons.warning_amber_rounded,
+                title: 'Erinnerung',
+                value: 'Zakat fällig in 3 Tagen',
+                comment: 'Berechne deine Zakat rechtzeitig',
               ),
             ],
           ),
