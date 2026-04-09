@@ -208,10 +208,7 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
 
   @override
   Widget build(BuildContext context) {
-    int topIndex = _currentIndex;
-    int back1Index = (_currentIndex + 1) % widget.cards.length;
-    int back2Index = (_currentIndex + 2) % widget.cards.length;
-    int indexDisplay = _currentIndex + 1;
+    int stackPosition = _currentIndex + 1;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -231,32 +228,55 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
             height: 250,
             width: double.infinity,
             child: Stack(
-              children: [
-                AnimatedPositioned(
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.easeOutBack,
-                  top: 20,
-                  left: 10,
-                  right: 10,
-                  child: Opacity(opacity: 0.4, child: widget.cards[back2Index]),
-                ),
-                AnimatedPositioned(
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.easeOutBack,
-                  top: 10,
-                  left: 5,
-                  right: 5,
-                  child: Opacity(opacity: 0.7, child: widget.cards[back1Index]),
-                ),
-                AnimatedPositioned(
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.easeOutBack,
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  child: Opacity(opacity: 1.0, child: widget.cards[topIndex]),
-                ),
-              ],
+              children: widget.cards
+                  .asMap()
+                  .entries
+                  .map((entry) {
+                    int index = entry.key;
+                    int position =
+                        (index - _currentIndex + widget.cards.length) %
+                        widget.cards.length;
+
+                    double top = 0;
+                    double horizontalInset = 0;
+                    double opacity = 1.0;
+
+                    if (position == 0) {
+                      // Karte ist ganz vorne
+                      top = 0;
+                      horizontalInset = 0;
+                      opacity = 1.0;
+                    } else if (position == 1) {
+                      // Karte ist in der Mitte
+                      top = 12;
+                      horizontalInset = 10;
+                      opacity = 0.7;
+                    } else {
+                      // Karte ist ganz hinten
+                      top = 24;
+                      horizontalInset = 20;
+                      opacity = 0.4;
+                    }
+
+                    return AnimatedPositioned(
+                      key: ValueKey(
+                        index,
+                      ), // WICHTIG: Damit Flutter die Karte wiederkennt
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.easeOutBack,
+                      top: top,
+                      left: horizontalInset,
+                      right: horizontalInset,
+                      child: AnimatedOpacity(
+                        duration: const Duration(milliseconds: 400),
+                        opacity: opacity,
+                        child: entry.value,
+                      ),
+                    );
+                  })
+                  .toList()
+                  .reversed
+                  .toList(),
             ),
           ),
         ),
@@ -264,7 +284,7 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              indexDisplay.toString(),
+              stackPosition.toString(),
               style: TextStyle(
                 fontFamily: 'DM Sans',
                 fontSize: 12,
@@ -306,7 +326,7 @@ class _QuickActionState extends State<QuickAction> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         GestureDetector(
@@ -314,10 +334,10 @@ class _QuickActionState extends State<QuickAction> {
             // Handle tap event
           },
           child: Container(
-            width: 33,
-            height: 33,
+            width: 60,
+            height: 60,
             decoration: BoxDecoration(
-              color: widget.backgroundColor,
+              color: widget.backgroundColor.withValues(alpha: 0.5),
               borderRadius: BorderRadius.circular(16),
             ),
             child: Icon(
