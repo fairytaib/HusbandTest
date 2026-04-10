@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:husband/shared/style_constants.dart';
-import 'package:husband/features/home/home_screen.dart';
+import 'package:husband/features/home/presentation/home_screen.dart';
 
 class HusbandApp extends StatelessWidget {
   const HusbandApp({super.key});
