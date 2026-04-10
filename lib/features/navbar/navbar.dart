@@ -21,7 +21,7 @@ class CustomNavbar extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
+            color: Colors.black.withValues(alpha: 0.2),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -48,15 +48,17 @@ class CustomNavbar extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: isActive ? Colors.white : Colors.white.withOpacity(0.5),
+            color: isActive
+                ? Colors.white
+                : Colors.white.withValues(alpha: 0.5),
             size: 24,
           ),
           const SizedBox(height: 4),
           // Kleiner Punkt unter dem aktiven Icon (wie im Design)
           AnimatedContainer(
             duration: const Duration(milliseconds: 300),
-            height: 4,
-            width: 4,
+            height: isActive ? 4 : 0,
+            width: isActive ? 4 : 0,
             decoration: BoxDecoration(
               color: isActive ? MainColors.gold : Colors.transparent,
               shape: BoxShape.circle,
@@ -67,7 +69,9 @@ class CustomNavbar extends StatelessWidget {
             label,
             style: TextStyle(
               fontSize: 10,
-              color: isActive ? Colors.white : Colors.white.withOpacity(0.5),
+              color: isActive
+                  ? Colors.white
+                  : Colors.white.withValues(alpha: 0.5),
             ),
           ),
         ],

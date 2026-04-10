@@ -240,7 +240,7 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
 
                     double top = position * 15;
                     double horizontalInset = position * 10;
-                    double opacity = 1.0 - (position * 3);
+                    double opacity = (1.0 - (position * 0.3)).clamp(0.0, 1.0);
 
                     return AnimatedPositioned(
                       key: ValueKey(
@@ -387,8 +387,7 @@ class _InformationCenterState extends State<InformationCenter> {
         },
         child: Container(
           width: double.infinity,
-          height: 80,
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(vertical: 16),
           decoration: BoxDecoration(
             color: widget.backgroundColor,
             borderRadius: BorderRadius.circular(20),
@@ -511,7 +510,7 @@ class _LastMemoriesState extends State<LastMemories> {
               Row(
                 children: [
                   Text(
-                    widget.date,
+                    '${widget.date.day}.${widget.date.month}.${widget.date.year}',
                     style: TextStyle(
                       fontFamily: 'Cormorant Garamond',
                       fontSize: 10,
@@ -566,8 +565,15 @@ class LastMemoriesSection extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedTab = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -692,10 +698,19 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                SizedBox(height: 100),
               ],
             ),
           ),
         ),
+      ),
+      bottomNavigationBar: CustomNavbar(
+        currentIndex: _selectedTab,
+        onTap: (index) {
+          setState(() {
+            _selectedTab = index;
+          });
+        },
       ),
     );
   }

@@ -8,16 +8,14 @@ class HusbandApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
-      home: const HomeScreen(),
       theme: ThemeData(
         fontFamily: 'Cormorant Garamond',
         scaffoldBackgroundColor: MainColors.surface,
       ),
+      home: const HomeScreen(),
     );
   }
 }
-
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
