@@ -38,7 +38,7 @@ class CardContent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Icon(icon, size: 32, color: const Color.fromARGB(185, 255, 255, 255)),
-          Spacer(),
+          SizedBox(height: 8),
           Text(
             title,
             style: TextStyle(
@@ -70,7 +70,7 @@ class CardContent extends StatelessWidget {
               ),
             ],
           ),
-          Spacer(),
+          SizedBox(height: 8),
           Text(
             comment,
             style: TextStyle(
@@ -79,7 +79,7 @@ class CardContent extends StatelessWidget {
               color: commentColor,
             ),
           ),
-          Spacer(),
+          SizedBox(height: 8),
           Wrap(
             spacing: 8,
             runSpacing: 4,
@@ -157,9 +157,20 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
     });
   }
 
+  int _getPosition(int index) {
+    return (index - _currentIndex + widget.cards.length) % widget.cards.length;
+  }
+
   @override
   Widget build(BuildContext context) {
     int stackPosition = _currentIndex + 1;
+
+    var sortedEntries = widget.cards.asMap().entries.toList();
+
+    sortedEntries.sort((a, b) {
+      return _getPosition(b.key).compareTo(_getPosition(a.key));
+    });
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -179,17 +190,25 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
             height: 300,
             width: double.infinity,
             child: Stack(
-              children: widget.cards
-                  .asMap()
-                  .entries
+              children: sortedEntries
                   .map((entry) {
                     int index = entry.key;
-                    int position =
-                        (index - _currentIndex + widget.cards.length) %
-                        widget.cards.length;
+                    int position = _getPosition(index);
 
-                    double top = position * 15;
-                    double horizontalInset = position * 10;
+                    double bottom = 1;
+                    double horizontalInset = 1;
+
+                    if(position == 0){
+                      bottom = 0;
+                      horizontalInset = 14;
+                    } else if( position == 1){
+                      bottom = 10;
+                      horizontalInset = 7;
+                    } else {
+                      bottom = 20;
+                      horizontalInset = 0;
+                    }
+                      
 
                     return AnimatedPositioned(
                       key: ValueKey(
@@ -197,7 +216,8 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
                       ), // WICHTIG: Damit Flutter die Karte wiederkennt
                       duration: const Duration(milliseconds: 400),
                       curve: Curves.easeOutBack,
-                      top: top,
+                      top: 0,
+                      bottom: bottom,
                       left: horizontalInset,
                       right: horizontalInset,
                       child: entry.value,

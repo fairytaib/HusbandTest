@@ -40,7 +40,7 @@ class _LastMemoriesState extends State<LastMemories> {
           ),
           SizedBox(width: 12),
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -52,6 +52,7 @@ class _LastMemoriesState extends State<LastMemories> {
                 ),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     '${widget.date.day}.${widget.date.month}.${widget.date.year}',
