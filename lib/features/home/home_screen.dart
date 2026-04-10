@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:husband/shared/style_constants.dart';
+import 'package:husband/features/navbar/navbar.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
@@ -237,26 +238,9 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
                         (index - _currentIndex + widget.cards.length) %
                         widget.cards.length;
 
-                    double top = 0;
-                    double horizontalInset = 0;
-                    double opacity = 1.0;
-
-                    if (position == 0) {
-                      // Karte ist ganz vorne
-                      top = 0;
-                      horizontalInset = 0;
-                      opacity = 1.0;
-                    } else if (position == 1) {
-                      // Karte ist in der Mitte
-                      top = 12;
-                      horizontalInset = 10;
-                      opacity = 0.7;
-                    } else {
-                      // Karte ist ganz hinten
-                      top = 24;
-                      horizontalInset = 20;
-                      opacity = 0.4;
-                    }
+                    double top = position * 15;
+                    double horizontalInset = position * 10;
+                    double opacity = 1.0 - (position * 3);
 
                     return AnimatedPositioned(
                       key: ValueKey(
