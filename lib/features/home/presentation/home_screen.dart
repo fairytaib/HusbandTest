@@ -5,13 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:husband/shared/style_constants.dart';
 
 //Widgets
-import 'package:husband/features/home/widgets/header.dart';
+import 'package:husband/shared/header.dart';
 import 'package:husband/features/home/widgets/cards.dart';
 import 'package:husband/features/home/widgets/quick_actions.dart';
 import 'package:husband/features/home/widgets/info_center.dart';
 import 'package:husband/features/home/widgets/memories.dart';
 import 'package:husband/features/navbar/navbar.dart';
-import 'package:hijri/hijri_calendar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

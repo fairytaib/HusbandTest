@@ -10,7 +10,7 @@ class HusbandApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         fontFamily: 'Cormorant Garamond',
-        scaffoldBackgroundColor: MainColors.surface,
+        scaffoldBackgroundColor: MainColors.daymode,
       ),
       home: const HomeScreen(),
     );
