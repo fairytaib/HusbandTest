@@ -28,7 +28,7 @@ class _LastMemoriesState extends State<LastMemories> {
       height: 50,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(86, 255, 255, 255).withValues(alpha: 0.1),
+        color: const Color.fromARGB(255, 255, 255, 255).withValues(alpha: 1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(

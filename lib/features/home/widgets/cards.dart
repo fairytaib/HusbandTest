@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:husband/shared/style_constants.dart';
 
-
 class TagData {
   final String label;
   final IconData? icon; // Optionales Icon
@@ -120,18 +119,23 @@ class CardContent extends StatelessWidget {
 class DashboardCard extends StatelessWidget {
   final Widget child;
   final Color backgroundColor;
-  const DashboardCard({super.key, required this.child, required this.backgroundColor});
+  const DashboardCard({
+    super.key,
+    required this.child,
+    required this.backgroundColor,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 200,
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(16),
+    return Material(
+      // Material sorgt für Schatten und korrekte Farbdarstellung
+      color: backgroundColor, // Hier die Farbe (z.B. MainColors.emerald)
+      borderRadius: BorderRadius.circular(20),
+      elevation: 4, // Optional: Ein leichter Schatten hilft bei der Trennung
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        child: child, // Hier kommt dein CardContent rein
       ),
-      child: child,
     );
   }
 }
@@ -172,7 +176,7 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
         GestureDetector(
           onTap: _showNextCard,
           child: SizedBox(
-            height: 250,
+            height: 300,
             width: double.infinity,
             child: Stack(
               children: widget.cards
@@ -186,7 +190,6 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
 
                     double top = position * 15;
                     double horizontalInset = position * 10;
-                    double opacity = (1.0 - (position * 0.3)).clamp(0.0, 1.0);
 
                     return AnimatedPositioned(
                       key: ValueKey(
@@ -197,11 +200,7 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
                       top: top,
                       left: horizontalInset,
                       right: horizontalInset,
-                      child: AnimatedOpacity(
-                        duration: const Duration(milliseconds: 400),
-                        opacity: opacity,
-                        child: entry.value,
-                      ),
+                      child: entry.value,
                     );
                   })
                   .toList()
