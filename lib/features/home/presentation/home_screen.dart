@@ -11,6 +11,7 @@ import 'package:husband/features/home/widgets/quick_actions.dart';
 import 'package:husband/features/home/widgets/info_center.dart';
 import 'package:husband/features/home/widgets/memories.dart';
 import 'package:husband/features/navbar/navbar.dart';
+import 'package:hijri/hijri_calendar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,6 +22,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedTab = 0;
+  var dateTime = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,13 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Header(),
+                Header(
+                  title: 'Assalamu ʿalaykum',
+                  emote: '🌙',
+                  europeDateTime: dateTime,
+                  icon: Icons.account_circle,
+                  actions: null,
+                ),
                 SizedBox(height: 32),
                 InteractiveCardStack(
                   cards: [
@@ -56,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     DashboardCard(
-                      backgroundColor: MainColors.brown,
+                      backgroundColor: MainColors.gold,
                       child: CardContent(
                         icon: Icons.attach_money,
                         title: 'Finanzen - Haushalt',

@@ -1,11 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:hijri/hijri_calendar.dart';
 import 'package:husband/shared/style_constants.dart';
 
 class Header extends StatelessWidget {
-  const Header({super.key});
+  final String title;
+  final String emote;
+  final String? subtitle;
+  final DateTime? europeDateTime;
+  final IconData? icon;
+  final Widget? actions;
+
+  const Header({
+    super.key,
+    required this.title,
+    required this.emote,
+    this.subtitle,
+    this.europeDateTime,
+    this.icon,
+    this.actions,
+  });
 
   @override
   Widget build(BuildContext context) {
+    String dateHeader = "";
+
+    if (europeDateTime != null) {
+      // Dank des Null-Checks oben können wir hier sicher sein
+      final e = europeDateTime!;
+      final i = HijriCalendar.fromDate(europeDateTime!);
+
+      dateHeader =
+          "${e.day}. ${e.month} · ${i.hDay} ${i.longMonthName} ${i.hYear}";
+    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -13,12 +39,12 @@ class Header extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Column(
+            Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Assalamu ʿalaykum 🌙',
+                  '$title $emote',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontFamily: 'Cormorant Garamond',
@@ -28,7 +54,7 @@ class Header extends StatelessWidget {
                 ),
                 SizedBox(height: 4),
                 Text(
-                  'Current Date.',
+                  subtitle ?? dateHeader,
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontFamily: 'Cormorant Garamond',
@@ -46,7 +72,9 @@ class Header extends StatelessWidget {
                 color: MainColors.ink,
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.account_circle, color: Colors.white),
+              child: icon != null
+                  ? Icon(icon)
+                  : (actions ?? const SizedBox.shrink()),
             ),
           ],
         ),
