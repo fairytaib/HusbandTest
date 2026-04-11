@@ -32,23 +32,30 @@ class CardContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(20.0),
+      padding: EdgeInsets.all(12.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 32, color: const Color.fromARGB(185, 255, 255, 255)),
-          SizedBox(height: 8),
-          Text(
-            title,
-            style: TextStyle(
-              fontFamily: 'DM Sans',
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: titleColor,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Icon(icon),
+              SizedBox(width: 4),
+              Text(
+                title,
+                style: TextStyle(
+                  fontFamily: 'Cormorant Garamond',
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: titleColor,
+                ),
+              ),
+            ],
           ),
-          SizedBox(height: 8),
+
+          SizedBox(height: 4),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -56,7 +63,7 @@ class CardContent extends StatelessWidget {
                 value.split(" ")[0],
                 style: TextStyle(
                   fontFamily: 'Cormorant Garamond',
-                  fontSize: 18,
+                  fontSize: 30,
                   color: valueColor,
                 ),
               ),
@@ -64,18 +71,18 @@ class CardContent extends StatelessWidget {
                 value.contains('/') ? '/ ${value.split('/')[1]}' : '',
                 style: TextStyle(
                   fontFamily: 'Cormorant Garamond',
-                  fontSize: 12,
+                  fontSize: 20,
                   color: valueColor,
                 ),
               ),
             ],
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 4),
           Text(
             comment,
             style: TextStyle(
               fontFamily: 'Cormorant Garamond',
-              fontSize: 12,
+              fontSize: 16,
               color: commentColor,
             ),
           ),
@@ -187,7 +194,7 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
         GestureDetector(
           onTap: _showNextCard,
           child: SizedBox(
-            height: 300,
+            height: 230,
             width: double.infinity,
             child: Stack(
               children: sortedEntries
@@ -198,17 +205,16 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
                     double bottom = 1;
                     double horizontalInset = 1;
 
-                    if(position == 0){
+                    if (position == 0) {
                       bottom = 0;
                       horizontalInset = 14;
-                    } else if( position == 1){
+                    } else if (position == 1) {
                       bottom = 10;
                       horizontalInset = 7;
                     } else {
                       bottom = 20;
                       horizontalInset = 0;
                     }
-                      
 
                     return AnimatedPositioned(
                       key: ValueKey(
@@ -250,6 +256,7 @@ class _InteractiveCardStackState extends State<InteractiveCardStack> {
             ),
           ],
         ),
+        SizedBox(height: 8),
       ],
     );
   }

@@ -28,7 +28,7 @@ class _LastMemoriesState extends State<LastMemories> {
       height: 50,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 255, 255, 255).withValues(alpha: 1),
+        color: const Color.fromARGB(255, 255, 255, 255),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -36,7 +36,7 @@ class _LastMemoriesState extends State<LastMemories> {
           Icon(
             widget.icon,
             size: 20,
-            color: const Color.fromARGB(185, 255, 255, 255),
+            color: const Color.fromARGB(255, 0, 0, 0),
           ),
           SizedBox(width: 12),
           Column(
@@ -48,7 +48,7 @@ class _LastMemoriesState extends State<LastMemories> {
                 style: TextStyle(
                   fontFamily: 'DM Sans',
                   fontSize: 12,
-                  color: Colors.white,
+                  color: const Color.fromARGB(255, 0, 0, 0),
                 ),
               ),
               Row(
@@ -59,7 +59,7 @@ class _LastMemoriesState extends State<LastMemories> {
                     style: TextStyle(
                       fontFamily: 'Cormorant Garamond',
                       fontSize: 10,
-                      color: Colors.white70,
+                      color: const Color.fromARGB(202, 65, 65, 65),
                     ),
                   ),
                   SizedBox(width: 8),
@@ -97,7 +97,7 @@ class LastMemoriesSection extends StatelessWidget {
           style: TextStyle(
             fontFamily: 'DM Sans',
             fontSize: 18,
-            color: Color.fromARGB(185, 255, 255, 255),
+            color: Color.fromARGB(184, 14, 13, 13),
           ),
         ),
         const SizedBox(height: 8),
