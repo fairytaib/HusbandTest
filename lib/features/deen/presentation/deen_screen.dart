@@ -2,10 +2,13 @@
 import 'package:flutter/material.dart';
 
 //Css
-// import 'package:husband/shared/style_constants.dart';
+import 'package:husband/features/shared/css/style_constants.dart';
 
 //Shared Widgets
+import 'package:husband/features/shared/body/sceleton.dart';
+import 'package:husband/features/shared/css/style_constants.dart';
 import 'package:husband/features/shared/header/header.dart';
+import 'package:husband/features/shared/header/selection_tool.dart';
 import 'package:husband/features/shared/navbar/navbar.dart';
 
 class DeenScreen extends StatefulWidget {
@@ -16,10 +19,47 @@ class DeenScreen extends StatefulWidget {
 }
 
 class _DeenScreenState extends State<DeenScreen> {
-  // int _selectedTab = 1;
-  
+  //Selection Tool
+  int _selectedCategoryIndex = 0;
+  final List<String> _categories = ['Heute', 'Dhikr', 'Quran', 'Wissen'];
+
+  //Navigation Bar
+  int _selectedTab = 1;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Sceleton(
+      header: Header(
+        title: 'Dein Deen',
+        emote: '☽',
+        subtitle: 'Bismillah',
+        icon: Icons.nightlife,
+      ),
+
+      upperActions: SelectionTool(
+        backgroundColor: 
+        MainColors.emerald.withValues(alpha: 0.05),
+        selectedColor: MainColors.emerald,
+        options: _categories,
+        selectedIndex: _selectedCategoryIndex,
+        onSelected: (index) {
+          setState(() {
+            _selectedCategoryIndex = index;
+          });
+        },
+        // if (_selectedCategoryIndex == 0) 
+        // InteractiveCardStack(cards: deenCards)
+
+        ),
+      mainAction: mainAction,
+      bottomNavigationBar: CustomNavbar(
+        currentIndex: _selectedTab,
+        onTap: (index) {
+          setState(() {
+            _selectedTab = index;
+          });
+        },
+      ),
+    );
   }
 }
