@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 //Css
 import 'package:husband/features/shared/css/style_constants.dart';
 
+// Shared Widgets
+import 'package:husband/features/shared/tags/tabs.dart';
+
 class InputCard extends StatefulWidget {
   final String title;
   final String question;
@@ -313,20 +316,20 @@ class _CheckupCardState extends State<CheckupCard> {
 
 class TextCard extends StatelessWidget {
   final String title;
-  final IconData icon;
   final String mainText;
   final String? subText; // Optional: Für Übersetzungen
   final String? reference; // Optional: Für Quellen (z.B. Hadith-Nummer)
   final Color backgroundColor;
+  final List<TagData> tags;
 
   const TextCard({
     super.key,
     required this.title,
-    required this.icon,
     required this.mainText,
     this.subText,
     this.reference,
     required this.backgroundColor,
+    required this.tags,
   });
 
   @override
@@ -339,29 +342,21 @@ class TextCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(24),
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.min, // Passt sich der Textlänge an
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header Bereich (Icon und Titel)
-          Row(
-            children: [
-              Icon(icon, color: Colors.white.withValues(alpha: 0.8), size: 20),
-              const SizedBox(width: 8),
-              Text(
-                title.toUpperCase(),
-                style: const TextStyle(
-                  color: Colors.white70,
-                  fontFamily: 'DM Sans',
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
-                ),
-              ),
-            ],
+          const SizedBox(width: 8),
+          Text(
+            title.toUpperCase(),
+            style: const TextStyle(
+              color: Colors.white70,
+              fontFamily: 'DM Sans',
+              fontSize: 10,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.2,
+            ),
           ),
-          const SizedBox(height: 20),
-
-          // Haupttext (z.B. Das Dua selbst)
+          const SizedBox(height: 4),
           Text(
             mainText,
             style: const TextStyle(
@@ -369,11 +364,9 @@ class TextCard extends StatelessWidget {
               fontFamily: 'Cormorant Garamond',
               fontSize: 22,
               fontWeight: FontWeight.w600,
-              height: 1.4, // Etwas mehr Zeilenabstand für bessere Lesbarkeit
+              height: 1.4,
             ),
           ),
-
-          // Optional: Untertext / Übersetzung (Wird nur gezeichnet, wenn vorhanden)
           if (subText != null) ...[
             const SizedBox(height: 12),
             Text(
@@ -386,8 +379,6 @@ class TextCard extends StatelessWidget {
               ),
             ),
           ],
-
-          // Optional: Referenz / Quelle (Ganz unten rechts)
           if (reference != null) ...[
             const SizedBox(height: 16),
             Align(
@@ -403,6 +394,37 @@ class TextCard extends StatelessWidget {
               ),
             ),
           ],
+          SizedBox(height: 4),
+          Wrap(
+            spacing: 8,
+            runSpacing: 4,
+            children: tags.map((tag) {
+              return Container(
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.3),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      tag.label,
+                      style: TextStyle(
+                        fontFamily: 'DM Sans',
+                        fontSize: 12,
+                        color: Colors.white,
+                      ),
+                    ),
+                    if (tag.icon != null) ...[
+                      Icon(tag.icon, size: 12, color: Colors.white),
+                      SizedBox(width: 4),
+                    ],
+                  ],
+                ),
+              );
+            }).toList(),
+          ),
         ],
       ),
     );

@@ -24,7 +24,7 @@ class _InformationCenterState extends State<InformationCenter> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(20.0),
+      padding: EdgeInsets.all(12.0),
       child: GestureDetector(
         onTap: () {
           // Handle tap event

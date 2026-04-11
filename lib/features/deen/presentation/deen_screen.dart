@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 //Css
 import 'package:husband/features/shared/css/style_constants.dart';
+import 'package:husband/features/shared/tags/tabs.dart';
 
 //Shared Widgets
 import 'package:husband/features/shared/header/header.dart';
@@ -78,6 +79,17 @@ class DeenBody extends StatelessWidget {
             tasks: ['Fajr', 'Duhr', 'Asr', 'Maghrib', 'Isha'],
             backgroundColor: MainColors.gold.withValues(alpha: 0.5),
             onProgressChanged: (completed, count) => print('checked'),
+          ),
+          TextCard(
+            backgroundColor: MainColors.purple.withValues(alpha: 0.5),
+            title: 'Deine Ziele',
+            mainText: 'رَبَّنَا هَبْ لَنَا',
+            subText: "Unser Herr, schenke uns…",
+            reference: 'Surah 25:74',
+            tags: [
+              TagData(label: "Juma'ah"),
+              TagData(label: 'Pflicht-Gebet'),
+            ],
           ),
         ] else
           const Text("Andere Kategorien kommen noch..."),
