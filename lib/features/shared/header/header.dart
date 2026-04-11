@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hijri/hijri_calendar.dart';
-import 'package:husband/shared/style_constants.dart';
+import 'package:husband/features/shared/css/style_constants.dart';
 
 class Header extends StatelessWidget {
   final String title;
   final String emote;
   final String? subtitle;
   final DateTime? europeDateTime;
+  final String? weekday;
   final IconData? icon;
   final Widget? actions;
 
@@ -16,6 +17,7 @@ class Header extends StatelessWidget {
     required this.emote,
     this.subtitle,
     this.europeDateTime,
+    this.weekday,
     this.icon,
     this.actions,
   });
@@ -29,8 +31,22 @@ class Header extends StatelessWidget {
       final e = europeDateTime!;
       final i = HijriCalendar.fromDate(europeDateTime!);
 
+      var dateTime = DateTime.now();
+      List<String> weekdays = [
+        "Montag",
+        "Dienstag",
+        "Mittwoch",
+        "Donnerstag",
+        "Freitag",
+        "Samstag",
+        "Sonntag",
+      ];
+
+      int weekdayNumber = dateTime.weekday;
+      String todayName = weekdays[weekdayNumber - 1];
+
       dateHeader =
-          "${e.day}. ${e.month} · ${i.hDay} ${i.longMonthName} ${i.hYear}";
+          "$todayName ${weekday ?? ''} ${e.day}. ${e.month} · ${i.hDay} ${i.longMonthName} ${i.hYear}";
     }
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,

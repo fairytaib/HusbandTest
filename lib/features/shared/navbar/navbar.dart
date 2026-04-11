@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:husband/shared/style_constants.dart';
+import 'package:husband/features/shared/css/style_constants.dart';
 
 class CustomNavbar extends StatelessWidget {
   final int currentIndex;
