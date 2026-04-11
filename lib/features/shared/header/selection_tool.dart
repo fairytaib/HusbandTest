@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:husband/features/shared/css/style_constants.dart';
 
-
 class SelectionTool extends StatelessWidget {
   final Color backgroundColor;
   final Color selectedColor;
@@ -48,7 +47,9 @@ class SelectionTool extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'DM Sans',
                     fontSize: 13,
-                    fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                    fontWeight: isSelected
+                        ? FontWeight.bold
+                        : FontWeight.normal,
                     color: isSelected ? Colors.white : MainColors.lightInk,
                   ),
                 ),

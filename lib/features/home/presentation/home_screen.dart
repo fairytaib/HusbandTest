@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:husband/features/shared/css/style_constants.dart';
 
 //Shared Widgets
-import 'package:husband/features/shared/body/sceleton.dart';
+import 'package:husband/features/shared/sceleton/sceleton.dart';
 import 'package:husband/features/shared/header/header.dart';
 import 'package:husband/features/shared/navbar/navbar.dart';
 

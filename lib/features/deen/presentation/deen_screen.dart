@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:husband/features/shared/css/style_constants.dart';
 
 //Shared Widgets
-import 'package:husband/features/shared/body/sceleton.dart';
+import 'package:husband/features/shared/sceleton/sceleton.dart';
 import 'package:husband/features/shared/css/style_constants.dart';
 import 'package:husband/features/shared/header/header.dart';
 import 'package:husband/features/shared/header/selection_tool.dart';
+import 'package:husband/features/shared/card_tabs/input_tab.dart';
 import 'package:husband/features/shared/navbar/navbar.dart';
 
 class DeenScreen extends StatefulWidget {
@@ -37,8 +38,7 @@ class _DeenScreenState extends State<DeenScreen> {
       ),
 
       upperActions: SelectionTool(
-        backgroundColor: 
-        MainColors.emerald.withValues(alpha: 0.05),
+        backgroundColor: MainColors.emerald.withValues(alpha: 0.05),
         selectedColor: MainColors.emerald,
         options: _categories,
         selectedIndex: _selectedCategoryIndex,
@@ -47,11 +47,21 @@ class _DeenScreenState extends State<DeenScreen> {
             _selectedCategoryIndex = index;
           });
         },
-        // if (_selectedCategoryIndex == 0) 
-        // InteractiveCardStack(cards: deenCards)
 
+        // if (_selectedCategoryIndex == 0)
+        // InteractiveCardStack(cards: deenCards)
+      ),
+      mainAction: [
+        InputCard(
+          title: 'Frage des Tages',
+          question: 'Wofür bist du heute besonders dankbar?',
+          icon: Icons.auto_awesome,
+          backgroundColor: MainColors.emerald,
+          onSave: (text) {
+            print("User hat gespeichert: $text");
+          },
         ),
-      mainAction: mainAction,
+      ],
       bottomNavigationBar: CustomNavbar(
         currentIndex: _selectedTab,
         onTap: (index) {

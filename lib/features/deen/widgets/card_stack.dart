@@ -14,7 +14,7 @@ class DeenCard extends StatelessWidget {
     required this.stats,
     required this.progress,
     required this.tasks,
-    this.accentColor = MainColors.emerald,
+    required this.accentColor,
   });
 
   @override
