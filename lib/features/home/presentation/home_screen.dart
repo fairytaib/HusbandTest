@@ -7,7 +7,6 @@ import 'package:husband/features/shared/css/style_constants.dart';
 //Shared Widgets
 import 'package:husband/features/shared/sceleton/sceleton.dart';
 import 'package:husband/features/shared/header/header.dart';
-import 'package:husband/features/shared/navbar/navbar.dart';
 
 // Own Widgets
 import 'package:husband/features/home/widgets/cards.dart';
@@ -15,20 +14,10 @@ import 'package:husband/features/home/widgets/quick_actions.dart';
 import 'package:husband/features/home/widgets/info_center.dart';
 import 'package:husband/features/home/widgets/memories.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int _selectedTab = 0;
-  var dateTime = DateTime.now();
-
-  @override
-  Widget build(BuildContext context) {
-    return Sceleton(
+class HomeTab {
+  static SceletonTab build(BuildContext context) {
+    final dateTime = DateTime.now();
+    return SceletonTab(
       header: Header(
         title: 'Assalamu ʿalaykum',
         emote: '🌙',
@@ -148,14 +137,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ],
-      bottomNavigationBar: CustomNavbar(
-        currentIndex: _selectedTab,
-        onTap: (index) {
-          setState(() {
-            _selectedTab = index;
-          });
-        },
-      ),
     );
   }
 }

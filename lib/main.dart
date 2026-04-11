@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:husband/features/shared/css/style_constants.dart';
 import 'package:husband/features/home/presentation/home_screen.dart';
+import 'package:husband/features/shared/navbar/navbar.dart';
+
+import 'package:husband/features/shared/sceleton/sceleton.dart';
 
 class HusbandApp extends StatelessWidget {
   const HusbandApp({super.key});
@@ -12,13 +15,18 @@ class HusbandApp extends StatelessWidget {
         fontFamily: 'Cormorant Garamond',
         scaffoldBackgroundColor: MainColors.daymode,
       ),
-      home: const HomeScreen(),
+      home: Sceleton(
+        tabs: [
+          HomeTab.build(context),
+        ],
+        bottomNavigationBarBuilder: (index, onTap) =>
+            CustomNavbar(currentIndex: index, onTap: onTap),
+      ),
     );
   }
 }
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // erst danach andere Initialisierungen
   runApp(HusbandApp());
 }
