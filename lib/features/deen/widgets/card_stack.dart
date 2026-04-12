@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// A custom card widget for displaying Deen-related tasks and progress. Used in the "Heute" category of the Deen Tab.
 class DeenCard extends StatelessWidget {
   final String title;
   final String stats; // z.B. "3/5"

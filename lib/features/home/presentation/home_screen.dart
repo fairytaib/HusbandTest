@@ -15,6 +15,7 @@ import 'package:husband/features/home/widgets/quick_actions.dart';
 import 'package:husband/features/home/widgets/info_center.dart';
 import 'package:husband/features/home/widgets/memories.dart';
 
+// HomeTab which is the main content of the HomeScreen, it includes a header, upper actions, extra actions and main action
 class HomeTab {
   static SceletonTab build(BuildContext context) {
     final dateTime = DateTime.now();

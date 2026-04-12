@@ -1,8 +1,7 @@
 // Flutter packages
 import 'package:flutter/material.dart';
 
-//Css
-
+// Final Sceleton that puts everything together for the main screen. It takes a list of tabs and a builder function for the bottom navigation bar. Each tab has its own header, upper actions, extra actions, and main actions.
 class SceletonTab {
   final Widget header;
   final Widget upperActions;

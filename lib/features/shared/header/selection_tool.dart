@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:husband/features/shared/css/style_constants.dart';
 
+// A custom selection tool widget that allows users to switch between different categories in the Deen Tab. It highlights the selected category and has a smooth animation when switching.
 class SelectionTool extends StatelessWidget {
   final Color backgroundColor;
   final Color selectedColor;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Custom widgets for the "Letze Erlebnisse" section in the main screen. It includes a section header and individual memory cards that display an icon, title, date, tag, and paid money (if applicable). These widgets are used to show recent activities or events in the user's life that they want to remember or reflect on.
 class LastMemories extends StatefulWidget {
   final IconData icon;
   final String title;

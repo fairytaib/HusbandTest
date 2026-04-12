@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:husband/features/shared/css/style_constants.dart';
 
+// Custom bottom navigation bar that matches the design of the app. It highlights the active tab and has a floating effect with a shadow. Used in the main screen of the app.
 class CustomNavbar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;

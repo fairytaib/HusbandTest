@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:husband/features/shared/css/style_constants.dart';
 
+// The header widget used in the main screen of the app. It displays the title, an emote, a subtitle (which can be a date or a custom string), and an optional icon or actions on the right side. It is used in each tab of the main screen to provide context and navigation options.
 class Header extends StatelessWidget {
   final String title;
   final String emote;

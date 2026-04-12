@@ -6,6 +6,8 @@ import 'package:husband/features/shared/css/style_constants.dart';
 // Shared Widgets
 import 'package:husband/features/shared/tags/tabs.dart';
 
+// Custom card widgets used in the Deen Tab, Finance Tab and Dates Tab to display different types of content, such as text, checklists, and input fields. These cards have a consistent design with rounded corners, padding, and a background color that can be customized based on the category.
+
 class InputCard extends StatefulWidget {
   final String title;
   final String question;

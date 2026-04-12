@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Custom widgets for the "Information Center" section in the main screen. It includes a section header and individual information cards that display an icon, title, value, and comment (if applicable). These widgets are used to show important information or updates to the user.
 class InformationCenter extends StatefulWidget {
   final Color backgroundColor;
   final IconData icon;

@@ -11,6 +11,7 @@ import 'package:husband/features/shared/header/selection_tool.dart';
 import 'package:husband/features/shared/card_tabs/tab.dart';
 import 'package:husband/features/shared/sceleton/sceleton.dart';
 
+// Puts everything together for the Deen Tab in the main screen.
 class DeenTab {
   static SceletonTab build(BuildContext context) {
     return SceletonTab(
@@ -26,6 +27,7 @@ class DeenTab {
   }
 }
 
+// The content of the Deen Tab, including the category selection and the body that changes based on the selected category.
 class DeenContent extends StatefulWidget {
   const DeenContent({super.key});
 
@@ -59,6 +61,7 @@ class _DeenContentState extends State<DeenContent> {
   }
 }
 
+// The body of the Deen Tab that changes based on the selected category. For now, only the "Heute" category has content.
 class DeenBody extends StatelessWidget {
   final int selectedCategory;
   const DeenBody({required this.selectedCategory, super.key});

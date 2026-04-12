@@ -3,6 +3,8 @@ import 'package:husband/features/shared/css/style_constants.dart';
 
 import 'package:husband/features/shared/tags/tabs.dart';
 
+// CardContent for the DashboardCard, which includes icon, title, value, comment and tags
+
 class CardContent extends StatelessWidget {
   final IconData icon;
   final String title;

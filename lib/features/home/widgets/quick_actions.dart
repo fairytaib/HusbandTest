@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:husband/features/shared/css/style_constants.dart';
 
-
+// A quick action widget that can be used in the upper actions section of the main screen. It consists of a circular icon with a background color and a label below it. It can be used for shortcuts to important features or tasks in the app.
 class QuickAction extends StatefulWidget {
   final Color backgroundColor;
   final IconData icon;
