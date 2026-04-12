@@ -6,10 +6,15 @@ import 'package:husband/features/shared/css/style_constants.dart';
 import 'package:husband/features/shared/tags/tabs.dart';
 
 //Shared Widgets
+import 'package:husband/features/shared/sceleton/sceleton.dart';
 import 'package:husband/features/shared/header/header.dart';
 import 'package:husband/features/shared/navbar/selection_tool.dart';
-import 'package:husband/features/shared/card_tabs/tab.dart';
-import 'package:husband/features/shared/sceleton/sceleton.dart';
+
+// Tabs
+import 'package:husband/features/shared/card_tabs/checkup_tab.dart';
+import 'package:husband/features/shared/card_tabs/input_tab.dart';
+import 'package:husband/features/shared/card_tabs/add_tab.dart';
+import 'package:husband/features/shared/card_tabs/text_tab.dart';
 
 // Puts everything together for the Deen Tab in the main screen.
 class DeenTab {
@@ -73,19 +78,19 @@ class DeenBody extends StatelessWidget {
       runSpacing: 20,
       children: [
         if (selectedCategory == 0) ...[
-          InputCard(
+          InputTab(
             title: 'Frage des Tages',
             question: 'Wofür bist du Allah heute Dankbar?',
             backgroundColor: MainColors.emerald.withValues(alpha: 0.05),
             onSave: (input) => print("saved"),
           ),
-          CheckupCard(
+          CheckupTab(
             title: 'Gebete',
             tasks: ['Fajr', 'Duhr', 'Asr', 'Maghrib', 'Isha'],
             backgroundColor: MainColors.gold.withValues(alpha: 0.5),
             onProgressChanged: (completed, count) => print('checked'),
           ),
-          TextCard(
+          TextTab(
             backgroundColor: MainColors.purple.withValues(alpha: 0.5),
             title: 'Deine Ziele',
             mainText: 'رَبَّنَا هَبْ لَنَا',
@@ -97,21 +102,21 @@ class DeenBody extends StatelessWidget {
             ],
           ),
         ] else if (selectedCategory == 1) ...[
-          AddCard(
+          AddTab(
             title: 'Neuer Dhikr',
             subtitle:
                 'Füge einen neuen Dhikr hinzu, den du regelmäßig rezitieren möchtest.',
             backgroundColor: MainColors.emerald.withValues(alpha: 0.05),
           ),
         ] else if (selectedCategory == 2) ...[
-          AddCard(
+          AddTab(
             title: 'Neues Ziel',
             subtitle:
                 'Füge einen neuen Ziel hinzu, den du regelmäßig rezitieren möchtest.',
             backgroundColor: MainColors.emerald.withValues(alpha: 0.05),
           ),
         ] else if (selectedCategory == 3) ...[
-          AddCard(
+          AddTab(
             title: 'Neue Unterrichtseinheit',
             subtitle:
                 'Füge eine neue Unterrichtseinheit hinzu, den du regelmäßig rezitieren möchtest.',
