@@ -121,6 +121,7 @@ class CardContent extends StatelessWidget {
   }
 }
 
+// DashboardCard, which is a Material card with rounded corners and a shadow, containing CardContent
 class DashboardCard extends StatelessWidget {
   final Widget child;
   final Color backgroundColor;
@@ -145,6 +146,7 @@ class DashboardCard extends StatelessWidget {
   }
 }
 
+// InteractiveCardStack, which is a stack of cards that can be swiped through by tapping. Only the top card is fully visible, the others are slightly offset and behind it. Tapping on the stack shows the next card in the list.
 class InteractiveCardStack extends StatefulWidget {
   final List<Widget> cards;
   const InteractiveCardStack({super.key, required this.cards});

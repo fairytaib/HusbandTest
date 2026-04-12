@@ -7,7 +7,7 @@ import 'package:husband/features/shared/tags/tabs.dart';
 
 //Shared Widgets
 import 'package:husband/features/shared/header/header.dart';
-import 'package:husband/features/shared/header/selection_tool.dart';
+import 'package:husband/features/shared/navbar/selection_tool.dart';
 import 'package:husband/features/shared/card_tabs/tab.dart';
 import 'package:husband/features/shared/sceleton/sceleton.dart';
 
@@ -68,7 +68,9 @@ class DeenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Wrap(
+      spacing: 20,
+      runSpacing: 20,
       children: [
         if (selectedCategory == 0) ...[
           InputCard(
@@ -93,6 +95,27 @@ class DeenBody extends StatelessWidget {
               TagData(label: "Juma'ah"),
               TagData(label: 'Pflicht-Gebet'),
             ],
+          ),
+        ] else if (selectedCategory == 1) ...[
+          AddCard(
+            title: 'Neuer Dhikr',
+            subtitle:
+                'Füge einen neuen Dhikr hinzu, den du regelmäßig rezitieren möchtest.',
+            backgroundColor: MainColors.emerald.withValues(alpha: 0.05),
+          ),
+        ] else if (selectedCategory == 2) ...[
+          AddCard(
+            title: 'Neues Ziel',
+            subtitle:
+                'Füge einen neuen Ziel hinzu, den du regelmäßig rezitieren möchtest.',
+            backgroundColor: MainColors.emerald.withValues(alpha: 0.05),
+          ),
+        ] else if (selectedCategory == 3) ...[
+          AddCard(
+            title: 'Neue Unterrichtseinheit',
+            subtitle:
+                'Füge eine neue Unterrichtseinheit hinzu, den du regelmäßig rezitieren möchtest.',
+            backgroundColor: MainColors.emerald.withValues(alpha: 0.05),
           ),
         ] else
           const Text("Andere Kategorien kommen noch..."),
