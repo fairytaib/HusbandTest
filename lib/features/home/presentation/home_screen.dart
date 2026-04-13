@@ -7,7 +7,7 @@ import 'package:husband/features/shared/css/style_constants.dart';
 //Shared Widgets
 import 'package:husband/features/shared/sceleton/sceleton.dart';
 import 'package:husband/features/shared/header/header.dart';
-import 'package:husband/features/shared/tags/tabs.dart';
+import 'package:husband/features/shared/tags/tags.dart';
 
 // Own Widgets
 import 'package:husband/features/home/widgets/cards.dart';

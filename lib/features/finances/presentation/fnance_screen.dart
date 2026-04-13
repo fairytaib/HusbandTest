@@ -1,9 +1,10 @@
 // Flutter packages
 import 'package:flutter/material.dart';
+import 'package:husband/features/shared/card_tabs/goal_tab.dart';
 
 //Css
 import 'package:husband/features/shared/css/style_constants.dart';
-import 'package:husband/features/shared/tags/tabs.dart';
+import 'package:husband/features/shared/tags/tags.dart';
 
 //Shared Widgets
 import 'package:husband/features/shared/sceleton/sceleton.dart';
@@ -78,11 +79,12 @@ class FinanceBody extends StatelessWidget {
       runSpacing: 20,
       children: [
         if (selectedCategory == 0) ...[
-          InputTab(
-            title: 'Frage des Tages',
-            question: 'Wofür bist du Allah heute Dankbar?',
-            backgroundColor: MainColors.emerald.withValues(alpha: 0.05),
-            onSave: (input) => print("saved"),
+          GoalTab(
+            title: 'Aktuelles Budget',
+            mainValue: '333€',
+            subtitle: 'von X monatlichen Budget',
+            backgroundColor: MainColors.gold,
+            
           ),
           CheckupTab(
             title: 'Gebete',

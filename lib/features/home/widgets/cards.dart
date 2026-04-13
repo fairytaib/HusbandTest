@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:husband/features/shared/css/style_constants.dart';
 
-import 'package:husband/features/shared/tags/tabs.dart';
+import 'package:husband/features/shared/tags/tags.dart';
 
 // CardContent for the DashboardCard, which includes icon, title, value, comment and tags
 

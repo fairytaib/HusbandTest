@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class GoalTab extends StatelessWidget {
   final String title;
-  final IconData icon;
+  final IconData? icon;
   final String mainValue;
   final String subtitle;
   final Color backgroundColor;
@@ -18,7 +18,7 @@ class GoalTab extends StatelessWidget {
   const GoalTab({
     super.key,
     required this.title,
-    required this.icon,
+    this.icon,
     required this.mainValue,
     required this.subtitle,
     required this.backgroundColor,

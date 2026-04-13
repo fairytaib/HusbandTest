@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Shared Widgets
-import 'package:husband/features/shared/tags/tabs.dart';
+import 'package:husband/features/shared/tags/tags.dart';
 
 class TextTab extends StatelessWidget {
   final String title;
