@@ -1,6 +1,5 @@
 // Flutter packages
 import 'package:flutter/material.dart';
-import 'package:husband/features/shared/card_tabs/goal_tab.dart';
 
 //Css
 import 'package:husband/features/shared/css/style_constants.dart';
@@ -17,40 +16,46 @@ import 'package:husband/features/shared/card_tabs/input_tab.dart';
 import 'package:husband/features/shared/card_tabs/add_tab.dart';
 import 'package:husband/features/shared/card_tabs/text_tab.dart';
 
-
-class FinanceTab {
+// Puts everything together for the Dates Tab in the main screen.
+class DatesTab {
   static SceletonTab build(BuildContext context) {
     return SceletonTab(
       header: Header(
-        title: 'Finanzen',
-        emote: '💰',
+        title: 'Dates & Ehe ',
+        emote: '♡',
         subtitle: 'Bismillah',
-        icon: Icons.account_balance,
+        icon: Icons.nightlife,
       ),
-      upperActions: const FinanceContent(),
+      upperActions: const DatesContent(),
       mainAction: [],
     );
   }
 }
 
-class FinanceContent extends StatefulWidget {
-  const FinanceContent({super.key});
+// The content of the Dates Tab, including the category selection and the body that changes based on the selected category.
+class DatesContent extends StatefulWidget {
+  const DatesContent({super.key});
 
   @override
-  State<FinanceContent> createState() => _FinanceContentState();
+  State<DatesContent> createState() => _DatesContentState();
 }
 
-class _FinanceContentState extends State<FinanceContent> {
+class _DatesContentState extends State<DatesContent> {
   int _selectedCategoryIndex = 0;
-  final List<String> _categories = ['Übersicht', 'Einträge', 'Zakat', 'Kategorien'];
+  final List<String> _categories = [
+    'Übersicht',
+    'Tagebuch',
+    'Ideen',
+    'DeepTalks',
+  ];
 
-    @override
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SelectionTool(
-          backgroundColor: MainColors.gold.withValues(alpha: 0.05),
-          selectedColor: MainColors.gold,
+          backgroundColor: MainColors.purple.withValues(alpha: 0.05),
+          selectedColor: MainColors.purple,
           options: _categories,
           selectedIndex: _selectedCategoryIndex,
           onSelected: (index) {
@@ -60,17 +65,16 @@ class _FinanceContentState extends State<FinanceContent> {
           },
         ),
         const SizedBox(height: 20),
-        FinanceBody(selectedCategory: _selectedCategoryIndex),
+        DatesBody(selectedCategory: _selectedCategoryIndex),
       ],
     );
   }
 }
 
-
-// The body of the Finance Tab that changes based on the selected category. For now, only the "Übersicht" category has content.
-class FinanceBody extends StatelessWidget {
+// The body of the Dates Tab that changes based on the selected category. For now, only the "Übersicht" category has content.
+class DatesBody extends StatelessWidget {
   final int selectedCategory;
-  const FinanceBody({required this.selectedCategory, super.key});
+  const DatesBody({required this.selectedCategory, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -79,17 +83,16 @@ class FinanceBody extends StatelessWidget {
       runSpacing: 20,
       children: [
         if (selectedCategory == 0) ...[
-          GoalTab(
-            title: 'Aktuelles Budget',
-            mainValue: '333€',
-            subtitle: 'von X monatlichen Budget',
-            backgroundColor: MainColors.gold,
-            
+          InputTab(
+            title: 'Frage des Tages',
+            question: 'Wofür bist du Allah heute Dankbar?',
+            backgroundColor: MainColors.purple.withValues(alpha: 0.05),
+            onSave: (input) => print("saved"),
           ),
           CheckupTab(
             title: 'Gebete',
             tasks: ['Fajr', 'Duhr', 'Asr', 'Maghrib', 'Isha'],
-            backgroundColor: MainColors.gold.withValues(alpha: 0.5),
+            backgroundColor: MainColors.purple.withValues(alpha: 0.5),
             onProgressChanged: (completed, count) => print('checked'),
           ),
           TextTab(
@@ -108,21 +111,21 @@ class FinanceBody extends StatelessWidget {
             title: 'Neuer Dhikr',
             subtitle:
                 'Füge einen neuen Dhikr hinzu, den du regelmäßig rezitieren möchtest.',
-            backgroundColor: MainColors.emerald.withValues(alpha: 0.05),
+            backgroundColor: MainColors.purple.withValues(alpha: 0.05),
           ),
         ] else if (selectedCategory == 2) ...[
           AddTab(
             title: 'Neues Ziel',
             subtitle:
                 'Füge einen neuen Ziel hinzu, den du regelmäßig rezitieren möchtest.',
-            backgroundColor: MainColors.emerald.withValues(alpha: 0.05),
+            backgroundColor: MainColors.purple.withValues(alpha: 0.05),
           ),
         ] else if (selectedCategory == 3) ...[
           AddTab(
             title: 'Neue Unterrichtseinheit',
             subtitle:
                 'Füge eine neue Unterrichtseinheit hinzu, den du regelmäßig rezitieren möchtest.',
-            backgroundColor: MainColors.emerald.withValues(alpha: 0.05),
+            backgroundColor: MainColors.purple.withValues(alpha: 0.05),
           ),
         ] else
           const Text("Andere Kategorien kommen noch..."),

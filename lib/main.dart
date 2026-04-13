@@ -1,10 +1,18 @@
+// FLutter imports
 import 'package:flutter/material.dart';
+
+// Css
 import 'package:husband/features/shared/css/style_constants.dart';
-import 'package:husband/features/home/presentation/home_screen.dart';
+
+// Features
+import 'package:husband/features/shared/sceleton/sceleton.dart';
 import 'package:husband/features/shared/navbar/navbar.dart';
 
-import 'package:husband/features/shared/sceleton/sceleton.dart';
+//Tabs
+import 'package:husband/features/home/presentation/home_screen.dart';
 import 'package:husband/features/deen/presentation/deen_screen.dart';
+import 'package:husband/features/finances/presentation/finance_screen.dart';
+import 'package:husband/features/dates/presentation/dates_screen.dart';
 
 class HusbandApp extends StatelessWidget {
   const HusbandApp({super.key});
@@ -17,7 +25,12 @@ class HusbandApp extends StatelessWidget {
         scaffoldBackgroundColor: MainColors.daymode,
       ),
       home: Sceleton(
-        tabs: [HomeTab.build(context), DeenTab.build(context)],
+        tabs: [
+          HomeTab.build(context),
+          DeenTab.build(context),
+          DatesTab.build(context),
+          FinanceTab.build(context),
+        ],
         bottomNavigationBarBuilder: (index, onTap) =>
             CustomNavbar(currentIndex: index, onTap: onTap),
       ),
