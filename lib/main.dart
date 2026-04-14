@@ -28,8 +28,8 @@ class HusbandApp extends StatelessWidget {
         tabs: [
           HomeTab.build(context),
           DeenTab.build(context),
-          DatesTab.build(context),
           FinanceTab.build(context),
+          DatesTab.build(context),
         ],
         bottomNavigationBarBuilder: (index, onTap) =>
             CustomNavbar(currentIndex: index, onTap: onTap),

@@ -14,7 +14,7 @@ import 'package:husband/features/shared/navbar/selection_tool.dart';
 // Tabs
 import 'package:husband/features/shared/card_tabs/add_tab.dart';
 import 'package:husband/features/shared/card_tabs/text_tab.dart';
-
+import 'package:husband/features/shared/card_tabs/finance_overview_tab.dart';
 
 class FinanceTab {
   static SceletonTab build(BuildContext context) {
@@ -40,9 +40,14 @@ class FinanceContent extends StatefulWidget {
 
 class _FinanceContentState extends State<FinanceContent> {
   int _selectedCategoryIndex = 0;
-  final List<String> _categories = ['Übersicht', 'Einträge', 'Zakat', 'Kategorien'];
+  final List<String> _categories = [
+    'Übersicht',
+    'Einträge',
+    'Zakat',
+    'Kategorien',
+  ];
 
-    @override
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -64,7 +69,6 @@ class _FinanceContentState extends State<FinanceContent> {
   }
 }
 
-
 // The body of the Finance Tab that changes based on the selected category. For now, only the "Übersicht" category has content.
 class FinanceBody extends StatelessWidget {
   final int selectedCategory;
@@ -82,22 +86,18 @@ class FinanceBody extends StatelessWidget {
             mainValue: '333€',
             subtitle: 'von X monatlichen Budget',
             backgroundColor: MainColors.gold,
-            
           ),
           TextTab(
             backgroundColor: MainColors.purple.withValues(alpha: 0.5),
             title: 'Einnahmen',
             mainText: '€ 2000',
             subText: "diesen Monat",
-            tags: [
-              TagData(label: "Gehalt"),
-            ],
+            tags: [TagData(label: "Gehalt")],
           ),
         ] else if (selectedCategory == 1) ...[
           AddTab(
             title: 'Neuer Ausgabe/Einnahme',
-            subtitle:
-                'Füge einen neuen Transaktion hinzu.',
+            subtitle: 'Füge einen neuen Transaktion hinzu.',
             backgroundColor: MainColors.emerald.withValues(alpha: 0.05),
           ),
         ] else if (selectedCategory == 2) ...[
@@ -106,20 +106,22 @@ class FinanceBody extends StatelessWidget {
             title: 'Zakat',
             mainText: '€ 175',
             subText: "2.5% von 7000€ Vermögen",
-            tags: [
-              TagData(label: "Nisab erreicht"),
-            ],
+            tags: [TagData(label: "Nisab erreicht")],
           ),
-
         ] else if (selectedCategory == 3) ...[
+          FinanceOverviewTab(
+            backgroundColor: MainColors.ink,
+            percentage: 0.65, // Der Ring füllt sich zu 65%
+            incomeValue: '+ 3.450 €',
+            expenseValue: '- 1.200 €',
+            zakatValue: '86,25 €',
+          ),
           TextTab(
             backgroundColor: MainColors.purple.withValues(alpha: 0.5),
             title: 'Analyse',
             mainText: 'Muss noch grafik-tab erstellen',
             subText: "Bla bla",
-            tags: [
-              TagData(label: "Nisab erreicht"),
-            ],
+            tags: [TagData(label: "Nisab erreicht")],
           ),
         ] else
           const Text("Andere Kategorien kommen noch..."),
