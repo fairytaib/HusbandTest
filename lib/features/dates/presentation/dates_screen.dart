@@ -83,12 +83,6 @@ class DatesBody extends StatelessWidget {
       runSpacing: 20,
       children: [
         if (selectedCategory == 0) ...[
-          InputTab(
-            title: 'Frage des Tages',
-            question: 'Wofür bist du Allah heute Dankbar?',
-            backgroundColor: MainColors.purple.withValues(alpha: 0.05),
-            onSave: (input) => print("saved"),
-          ),
           CheckupTab(
             title: 'Gebete',
             tasks: ['Fajr', 'Duhr', 'Asr', 'Maghrib', 'Isha'],

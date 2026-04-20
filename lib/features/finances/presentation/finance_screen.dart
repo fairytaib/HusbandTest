@@ -94,6 +94,13 @@ class FinanceBody extends StatelessWidget {
             subText: "diesen Monat",
             tags: [TagData(label: "Gehalt")],
           ),
+          FinanceOverviewTab(
+            backgroundColor: MainColors.gold.withValues(alpha: 0.5),
+            percentage: 0.3,
+            incomeValue: '1500',
+            expenseValue: '144',
+            zakatValue: '22',
+          ),
         ] else if (selectedCategory == 1) ...[
           AddTab(
             title: 'Neuer Ausgabe/Einnahme',

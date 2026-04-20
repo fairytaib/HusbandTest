@@ -84,22 +84,22 @@ class HomeTab {
       extraActions: QuickActionsSection(
         children: [
           QuickAction(
-            backgroundColor: const Color.fromARGB(255, 38, 199, 124),
+            backgroundColor: MainColors.lightGreen,
             icon: Icons.menu_book,
             text: 'Dua hinzufügen',
           ),
           QuickAction(
-            backgroundColor: const Color(0xFFE79231),
+            backgroundColor: MainColors.lightYellow,
             icon: Icons.add,
             text: 'Ausgaben hinzufügen',
           ),
           QuickAction(
-            backgroundColor: const Color.fromARGB(255, 164, 49, 231),
+            backgroundColor: MainColors.lightPurple,
             icon: Icons.local_restaurant_rounded,
             text: 'Date planen',
           ),
           QuickAction(
-            backgroundColor: const Color(0xFFE79231),
+            backgroundColor: MainColors.lightGrey,
             icon: Icons.pie_chart_rounded,
             text: 'Zakat rechnen',
           ),
@@ -107,7 +107,7 @@ class HomeTab {
       ),
       mainAction: [
         InformationCenter(
-          backgroundColor: MainColors.ink,
+          backgroundColor: MainColors.gradientYellow,
           icon: Icons.warning_amber_rounded,
           title: 'Erinnerung',
           value: 'Zakat fällig in 3 Tagen',
