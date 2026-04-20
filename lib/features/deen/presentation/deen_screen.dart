@@ -81,24 +81,24 @@ class DeenBody extends StatelessWidget {
           InputTab(
             title: 'Frage des Tages',
             question: 'Wofür bist du Allah heute Dankbar?',
-            backgroundColor: MainColors.emerald.withValues(alpha: 0.05),
+            backgroundColor: MainColors.gradientGreen,
             onSave: (input) => print("saved"),
           ),
           CheckupTab(
             title: 'Gebete',
             tasks: ['Fajr', 'Duhr', 'Asr', 'Maghrib', 'Isha'],
-            backgroundColor: MainColors.gold.withValues(alpha: 0.5),
+            backgroundColor: MainColors.lightGreen,
             onProgressChanged: (completed, count) => print('checked'),
           ),
           TextTab(
-            backgroundColor: MainColors.purple.withValues(alpha: 0.5),
-            title: 'Deine Ziele',
+            backgroundColor: MainColors.lightPurple,
+            title: 'Dua',
             mainText: 'رَبَّنَا هَبْ لَنَا',
             subText: "Unser Herr, schenke uns…",
             reference: 'Surah 25:74',
             tags: [
-              TagData(label: "Juma'ah"),
-              TagData(label: 'Pflicht-Gebet'),
+              TagData(label: "Quran"),
+              TagData(label: 'Dua'),
             ],
           ),
         ] else if (selectedCategory == 1) ...[

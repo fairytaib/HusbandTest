@@ -54,7 +54,7 @@ class _DatesContentState extends State<DatesContent> {
     return Column(
       children: [
         SelectionTool(
-          backgroundColor: MainColors.purple.withValues(alpha: 0.05),
+          backgroundColor: MainColors.lightPurple,
           selectedColor: MainColors.purple,
           options: _categories,
           selectedIndex: _selectedCategoryIndex,
@@ -86,11 +86,11 @@ class DatesBody extends StatelessWidget {
           CheckupTab(
             title: 'Gebete',
             tasks: ['Fajr', 'Duhr', 'Asr', 'Maghrib', 'Isha'],
-            backgroundColor: MainColors.purple.withValues(alpha: 0.5),
+            backgroundColor: MainColors.lightPurple,
             onProgressChanged: (completed, count) => print('checked'),
           ),
           TextTab(
-            backgroundColor: MainColors.purple.withValues(alpha: 0.5),
+            backgroundColor: MainColors.lightPurple,
             title: 'Deine Ziele',
             mainText: 'رَبَّنَا هَبْ لَنَا',
             subText: "Unser Herr, schenke uns…",

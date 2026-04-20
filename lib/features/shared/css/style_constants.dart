@@ -13,28 +13,10 @@ class MainColors {
 
   /// SubColors
   // Gradient
-  static const Gradient gradientGreen = LinearGradient(
-    begin: Alignment(0.0, -1.0),
-    end: Alignment(0.0, 1.0),
-    colors: [
-      Color(0xff085041),
-      Color.fromARGB(255, 16, 138, 107),
-    ]);
+  static const Color gradientGreen =Color(0xFF108A6B);
 
-  static const Gradient gradientYellow = LinearGradient(
-  begin: Alignment(-0.6, -0.8), 
-  end: Alignment(0.6, 0.8),
-  colors: [
-    Color(0xFF633806), 
-    Color(0xFFBA7517), 
-  ]);
-  static const Gradient gradientPurple = LinearGradient(
-  begin: Alignment(-0.7, -0.8),
-  end: Alignment(0.7, 0.8),
-  colors: [
-    Color(0xFF3C3489),
-    Color(0xFF534AB7),
-  ]);
+  static const Color gradientYellow = Color(0xFFBA7517);
+  static const Color gradientPurple = Color(0xFF534AB7);
 
   //light sub Colors
   static const Color lightGreen = Color(0xFFE1F5EE);

@@ -41,14 +41,14 @@ class _LastMemoriesState extends State<LastMemories> {
           ),
           SizedBox(width: 12),
           Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 widget.title,
                 style: TextStyle(
                   fontFamily: 'DM Sans',
-                  fontSize: 12,
+                  fontSize: 16,
                   color: const Color.fromARGB(255, 0, 0, 0),
                 ),
               ),
@@ -59,7 +59,7 @@ class _LastMemoriesState extends State<LastMemories> {
                     '${widget.date.day}.${widget.date.month}.${widget.date.year}',
                     style: TextStyle(
                       fontFamily: 'Cormorant Garamond',
-                      fontSize: 10,
+                      fontSize: 14,
                       color: const Color.fromARGB(202, 65, 65, 65),
                     ),
                   ),
